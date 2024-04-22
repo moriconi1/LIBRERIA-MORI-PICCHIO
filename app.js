@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import {connectDB, getall , getFilteredData} from './db.js';
+import {connectDB, getall , gettitolo, getimg, getdescr} from './db.js';
 
 let db;
 

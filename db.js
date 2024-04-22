@@ -42,5 +42,52 @@ try {
 const Filterdata = await getFilterData(db,'libri',{titolo : "In nome della libertà. La forza delle idee di Silvio Berlusconi"});
 console.log(Filterdata);
 
+//get immagini
+async function getimg (db, nomeimg){
+    const dati = await db.collection('libri').toArray(id).find(nomeimg);
+    return dati;
+}
+try {
+    db = await connectDB();
+    console.log("connessione effettuata");
+} catch (error) {
+    console.error(error);
+}
+
+//get titoli
+async function gettitolo (db, titolo){
+    const dati = await db.collection('libri').toArray(id).find(titolo);
+    return dati;
+}
+try {
+    db = await connectDB();
+    console.log("connessione effettuata");
+} catch (error) {
+    console.error(error);
+}
+
+//get descrizione
+async function getdescr (db, id){
+    const dati = await db.collection('libri').toArray(id).find('descrizione');
+    return dati;
+}
+try {
+    db = await connectDB();
+    console.log("connessione effettuata");
+} catch (error) {
+    console.error(error);
+}
+
+//get autore
+async function getautore (db, id){
+    const dati = await db.collection('libri').toArray(id).find('autore');
+    return dati;
+}
+try {
+    db = await connectDB();
+    console.log("connessione effettuata");
+} catch (error) {
+    console.error(error);
+}
 
 //come visualizzare tutti i modellli di macchine
