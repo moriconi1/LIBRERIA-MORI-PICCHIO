@@ -259,7 +259,7 @@ import express from 'express';
           const collezione = db.collection('libri');
       
           // Trova l'immagine nel database utilizzando l'ID fornito
-          const immagine = await collezione.findOne({ _id: ObjectID(idImmagine) });
+          const immagine = await collezione.findOne({ _id: ObjectID(idImmagine).immagine });
       
           if (!immagine) {
             // Se l'immagine non viene trovata, restituisci un errore 404
