@@ -75,12 +75,12 @@
     </style>
 </head>
 <body>
-  <script src="../login.js"></script>
+
 <div class="container">
     <h2>Login</h2>
     <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="Email" required>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
     </div>
     <div class="form-group">
         <label for="password">Password:</label>
@@ -91,6 +91,22 @@
     </div>
     <p id="error-msg" style="color: red;"></p>
 </div>
+
+<script>
+    function login() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        
+        // Esempio di logica di autenticazione, sostituire con la logica reale
+        if (username === 'admin' && password === 'password') {
+            alert('Login riuscito!');
+            // Redirect ad una pagina successiva
+            // window.location.href = 'dashboard.html';
+        } else {
+            document.getElementById('error-msg').innerText = 'Credenziali non valide. Riprova.';
+        }
+    }
+</script>
 
 </body>
 </html>

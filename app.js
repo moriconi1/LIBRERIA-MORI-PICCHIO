@@ -40,7 +40,7 @@ async function getUserCredentials(identifier) {
     const user = loginData.find((user) => user.identifier === identifier);
     return user;
   } catch (error) {
-    throw new Error(Error fetching user: ${error});
+    throw new Error('Error fetching user: ${error}');
   }
 }
 
@@ -89,5 +89,5 @@ app.post('/api/libri', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(Server running on port ${PORT});
+  console.log('Server running on port ${PORT}');
 });
