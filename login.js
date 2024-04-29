@@ -1,6 +1,6 @@
 
 async function login(event) {
-    event.preventDefault();  // Aggiungi questa linea per prevenire il submit standard del form
+    event.preventDefault();  // Previene il submit standard del form
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -12,29 +12,23 @@ async function login(event) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                identifier: email,
-                password: password
+                email: 'email',
+                password: 'password'
             })
         });
 
         if (response.ok) {
             window.location.href = '../admin.html'; // Reindirizza se il login è riuscito
         } else {
-            alert('Credenziali non valide'); // Mostra un messaggio di errore se il login fallisce
+            const errorMessage = await response.text(); // Ottieni il messaggio di errore dal corpo della risposta
+            alert(errorMessage); // Mostra un messaggio di errore se il login fallisce
         }
     } catch (error) {
         console.error('Error:', error);
+        alert('Si è verificato un errore durante il login. Si prega di riprovare.'); // Gestione generica degli errori
     }
-};
-
-function checkEnter(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        requestLogin(event);
-    }
-};
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('password').addEventListener('keypress', checkEnter);
-    document.querySelector('form').addEventListener('submit', requestLogin);  // Aggiungi un listener di evento al form
+    document.querySelector('form').addEventListener('submit', login); // Aggiungi un listener di evento al form
 });

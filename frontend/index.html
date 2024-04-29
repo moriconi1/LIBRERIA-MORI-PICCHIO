@@ -22,8 +22,8 @@
             </li>
           <div class="d-flex">
             <form class="d-flex me-2" role="search">
-              <input class="form-control me-2" type="search" placeholder="Cerca" aria-label="search">
-              <button class="btn btn-outline-success" type="submit">Cerca</button>
+              <input class="form-control me-2" type="search" placeholder="Cerca" id="ricerca" aria-label="search">
+              <button class="btn btn-outline-success" onclick="getFilteredData(db, libri, titolo=ricerca)"type="submit">Cerca</button>
             </form>
           </div>
           <a href="login.html" class="btn btn-outline-light">Login</a>
@@ -31,7 +31,7 @@
     </nav>
   </nav>
 
-
+  <div id="cards-container" class="container mt-4">
   <div class="container mt-4">
     <div class="row">
       <div class="col">
@@ -104,7 +104,7 @@
           <div class="card mb-3">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
+              <h5 class="card-title">              </h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
           </div>
@@ -128,6 +128,46 @@
           </div>
         </div>
       </div>
+    </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetchlibri();
+        });
+    
+        async function fetchShoes() {
+            try {
+                const response = await fetch("http://localhost:3000/api/shoes");
+                const libri = await response.json();
+                displayLibri(libri);
+            } catch (error) {
+                console.error("Errore nel recuperare i dati:", error);
+            }
+        }
+    
+        function displayLibri(libri) {
+            const container = document.getElementById("cards-container");
+            container.innerHTML = "";
+    
+            // Creare le card e aggiungerle al container
+            libri.forEach((id) => {
+                const cardHTML = `
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="${libri.immagine}" class="card-img-top" alt="Immagine del libro">
+                            <div class="card-body">
+                                <h5 class="card-title">${libri.titolo}</h5>
+                                <p class="card-text">${libri.descrizione || "Nessuna descrizione disponibile"}</p>
+                                <p class="card-text"><strong>${libri.autore}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHTML;
+            });
+        }
+    </script>
+    
         
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>

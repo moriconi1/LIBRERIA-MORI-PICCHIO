@@ -37,8 +37,8 @@ async function getUserCredentials(identifier) {
   try {
     const db = await connectDB();
     const loginData = await getAllUsers(db, "datiacc");
-    const user = loginData.find((user) => user.identifier === identifier);
-    return user;
+    const email = loginData.find((email) => email.identifier === identifier);
+    return email;
   } catch (error) {
     throw new Error('Error fetching user: ${error}');
   }
@@ -47,8 +47,8 @@ async function getUserCredentials(identifier) {
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await getUserCredentials(email); // Ottieni le credenziali dell'utente
-    if (user && user.password === password) {
+    const datiacc = await getUserCredentials(email); // Ottieni le credenziali dell'utente
+    if (email && datiacc.password === password) {
       res.status(200).send("AUTHORIZED");
     } else {
       res.status(401).send("UNAUTHORIZED");
@@ -78,8 +78,8 @@ app.post('/api/libri', async (req, res) => {
   const libridata = req.body; // i dati della scarpa dovrebbero essere inviati nel body della richiesta
   try {
     const db = await connectDB();
-    const newlibroId = await addShoe(db, libroData); // aggiunge la scarpa al database e ritorna l'id
-    res.status(201).json({ message: "Shoe added successfully", id: newlibroId });
+    const newlibroId = await addlibro(db, libroData); // aggiunge la scarpa al database e ritorna l'id
+    res.status(201).json({ message: "libro added successfully", id: newlibroId });
   } catch (error) {
     console.error("Failed to add shoe:", error);
     res.status(500).json({ error: error.message });

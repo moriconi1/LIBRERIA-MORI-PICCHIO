@@ -48,18 +48,14 @@
         <input type="text" class="form-control" id="autore" name="autore" value="Nome dell'autore da modificare" required>
       </div>
       <div class="mb-3">
-        <label for="anno" class="form-label">Anno di Uscita</label>
-        <input type="number" class="form-control" id="anno" name="anno" value="Anno di uscita da modificare" required>
-      </div>
-      <div class="mb-3">
         <label for="descrizione" class="form-label">Descrizione</label>
         <textarea class="form-control" id="descrizione" name="descrizione" rows="3" required>Descrizione del libro da modificare</textarea>
       </div>
       <div class="mb-3">
-        <label for="prezzo" class="form-label">Prezzo</label>
+        <label for="autore" class="form-label">Autore</label>
         <input type="number" class="form-control" id="prezzo" name="prezzo" value="Prezzo del libro da modificare" required>
       </div>
-      <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+      <button type="submit" onclick="updatelibro(db, libroId, titolo, autore, descrizione)"class="btn btn-primary">Salva Modifiche</button>
     </form>
   </div>
 

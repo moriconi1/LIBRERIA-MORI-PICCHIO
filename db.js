@@ -41,13 +41,13 @@ async function addlibro(db, libroData) {
 }
 
 
-async function updateShoe(db, libroId, newModel, newImage, newPrice, newDescription) {
+async function updatelibro(db, libroId, newtitolo, newImage, newautore, newdescrizione) {
     try {
-        const result = await db.collection('libir').updateOne(
-            { _id: libroIdId },
+        const result = await db.collection('libri').updateOne(
+            { _id: libroId },
             {
                 $set: {
-                    titolo: newModel,
+                    titolo: newtitolo,
                     immagine: newImage,
                     autore: newauthor,
                     descrizione: newDescription
@@ -74,4 +74,4 @@ async function deletelibro(db,libroData) {
     }
 }
 
-export { connectDB, getFilteredData, getall, addlibro, deletelibro, getAllUsers, updateShoe };
+export { connectDB, getFilteredData, getall, addlibro, deletelibro, getAllUsers, updatelibro };
